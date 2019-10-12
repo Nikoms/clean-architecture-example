@@ -1,0 +1,8 @@
+twig:
+    debug: '%kernel.debug%'
+    default_path: '%kernel.project_dir%/resources/templates'
+    strict_variables: '%kernel.debug%'
+    form_themes:
+        - '@FOSCKEditor/Form/ckeditor_widget.html.twig'
+    globals:
+        pdf_path: '%app.path.download_pdf%'

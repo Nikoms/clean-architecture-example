@@ -1,0 +1,260 @@
+a,.dropdown-content li>a {
+    color: #44A729;
+}
+
+a:hover {
+    color: #55544B;
+    text-decoration: underline;
+}
+
+/* begin: Pour le menu "user" en haut à gauche*/
+.dropdown-content li>a:hover,
+.dropdown-content li>span:hover{
+    color: #44A729;
+    text-decoration: none;
+}
+
+.dropdown-content li>a, .dropdown-content li>span {
+    color: #44A729;
+}
+/* end: Pour le menu "user" en haut à gauche*/
+
+.important {
+    color: #44A729;
+}
+
+.seat-green {
+    background-color: #44A729;
+}
+
+.seat-green2 {
+    background-color: #91BD10;
+}
+
+.seat-orange {
+    background-color: #eaad00;
+}
+
+.seat-orange2 {
+    background-color: #fecc00;
+}
+
+
+.seat-text-green {
+    color: #44A729;
+}
+
+.seat-text-green2 {
+    color: #91BD10;
+}
+
+.seat-text-orange {
+    color: #eaad00;
+}
+
+.seat-text-orange2 {
+    color: #fecc00;
+}
+
+.btn {
+    background-color: #eaad00;
+}
+
+.btn:hover {
+    background-color: #fecc00;
+}
+
+.btn:focus {
+    background-color: #eaad00;
+}
+
+body {
+    background-color: transparent;
+    /*font-family: Calibri, "Helvetica Neue", Arial, Helvetica, sans-serif;*/
+}
+
+.btn-full {
+    display: block;
+    width: 100%;
+}
+
+.seat-main-container {
+    width: 100%;
+}
+
+@media only screen and (max-width: 600px) {
+    .menu .card .card-content {
+        padding: 0;
+    }
+
+    .row .col.menu {
+        padding: 0;
+    }
+}
+
+
+/* begin: Panier sur la droite */
+
+.panier-item {
+    margin-bottom: 10px;
+}
+
+.panier-item .divider {
+    margin-top: 5px;
+}
+
+.inline-icon {
+    vertical-align: bottom;
+    font-size: 18px !important;
+}
+
+.panier-total {
+    margin-bottom: 10px;
+}
+
+.panier-total-price {
+    display: flex;
+    justify-content: space-between;
+}
+
+.panier-total-price-label {
+    font-weight: bold;
+}
+
+.panier-total .divider {
+    margin-top: 15px;
+}
+
+.remove-from-basket {
+    font-size: 80%;
+}
+
+/* end: Panier sur la droite */
+
+
+/* begin: carte take away */
+.products {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    list-style-type: none;
+}
+
+.product {
+    position: relative;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    padding: 16px;
+    border: 1px solid transparent;
+    border-radius: 2px;
+    background-color: #f9f9f9;
+    box-shadow: none;
+    outline: none;
+    transition: box-shadow 0.2s ease-in-out;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    flex: 0 1 46%;
+    flex-direction: row;
+}
+
+.category {
+    text-align: center;
+    font-size: 2.28rem;
+    line-height: 110%;
+    margin: 1.52rem 0 .912rem 0;
+}
+
+.product-info {
+    display: flex;
+    justify-content: space-between;
+}
+
+.product-name {
+    font-weight: bold;
+}
+
+#product-modal .modal-content {
+    padding: 0;
+}
+
+#product-modal .title {
+    padding: 10px;
+}
+
+#product-modal .sector {
+    background-color: #e8ebeb;
+    padding: 8px 24px;
+}
+
+#product-modal .supplements {
+    padding: 0 10px;
+}
+
+#product-modal .options {
+    padding: 10px 10px;
+}
+
+#product-modal .comments {
+    padding: 10px 10px;
+}
+
+#product-modal .modal-sub-footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+#product-modal .modal-sub-footer .quantity-zone {
+    margin: auto;
+}
+
+#product-modal .modal-sub-footer .quantity-zone .quantity {
+    text-align: center;
+    width: 50px;
+    display: inline-block;
+}
+
+#product-modal .modal-sub-footer .add {
+    position: absolute;
+    right: 5px;
+}
+
+@media only screen and (max-width: 600px) {
+    #product-modal {
+        width: 100%;
+        max-height: 100%;
+        height: 100%;
+        top: 0 !important;
+    }
+
+    .product {
+        flex: 1 1 100%;
+        margin: 0;
+        border: none;
+        border-radius: 0;
+        border-left: none;
+        border-right: none;
+        border-top: 1px solid #e8ebeb;
+        border-bottom: none;
+    }
+
+    .product:last-child {
+        border-bottom: 1px solid #e8ebeb;
+    }
+}
+
+/* end: carte take away */
+
+.footer-to-order-on-mobile {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 1;
+    background-color: white;
+    padding: 5px 10%
+}

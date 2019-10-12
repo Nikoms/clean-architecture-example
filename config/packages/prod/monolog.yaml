@@ -1,0 +1,13 @@
+monolog:
+    handlers:
+        filter_for_errors:
+            type: fingers_crossed
+            action_level: error
+            handler: error_log_handler
+            excluded_404s:
+                # regex: exclude all 404 errors from the logs
+                - ^/
+
+        error_log_handler:
+            type: error_log
+            level: info

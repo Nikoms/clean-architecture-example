@@ -1,0 +1,12 @@
+{% extends 'base_resto.html.twig' %}
+
+{% block body %}
+    <div class="card">
+        <div class="card-content">
+            {{ 'menu-salle'|content }}
+
+            {{ 'menu-salle-waterloo'|download }}
+            {{ 'menu-salle-genval'|download }}
+        </div>
+    </div>
+{% endblock %}

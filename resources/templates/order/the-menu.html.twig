@@ -1,0 +1,63 @@
+<div id="vue-app">
+    {% verbatim %}
+    <div id="product-modal" class="modal modal-fixed-footer">
+        <form :action="addUrl" method="post">
+            <div class="modal-content">
+                <a href="#!" class="modal-close right"><i class="medium material-icons">close</i></a>
+                <h4 class="title">{{selectedProduct.name}}</h4>
+                <input name="basket[productId]" type="hidden" :value="selectedProduct.value"/>
+                <input name="basket[quantity]" type="hidden" :value="quantity" min="1" pattern="[0-9]+" required/>
+                <div v-if="selectedCategory && selectedCategory.options && selectedCategory.options.length > 0">
+                    <div class="sector flow-text">Option</div>
+                    <div class="options">
+                        <select name="basket[optionId]" class="browser-default">
+                            <option v-for="option in selectedCategory.options" :value="option.value">{{option.text}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div v-if="selectedCategory.supplements && selectedCategory.supplements.length > 0">
+                    <div class="sector flow-text">Suppléments</div>
+                    <div class="supplements">
+                        <p v-for="supplement in selectedCategory.supplements">
+                          <label>
+                            <input type="checkbox" name="basket[supplementIds][]" :value="supplement.value"/>
+                            <span>{{supplement.text}}</span>
+                          </label>
+                        </p>
+                    </div>
+                </div>
+                <div class="sector flow-text">Commentaires</div>
+
+                <div class="comments">
+                    <input name="basket[comment]" placeholder="Ajouter une note (Sans tomate, etc...)"/>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="modal-sub-footer">
+                <div class="quantity-zone">
+                    <a class="waves-effect waves-light btn"@click="removeQuantity()"><i class="large material-icons">remove</i></a>
+                    <span class="quantity">{{quantity}}</span>
+                    <a class="waves-effect waves-light btn" @click="addQuantity()"><i class="large material-icons">add</i></a>
+                </div>
+                <button type="submit" class="add modal-close waves-effect waves-green btn-flat">Ajouter</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <template v-for="category in menu">
+        <h2 class="category seat-text-green2"> {{ category.name }}</h2>
+        <ul class="products">
+            <li class="product waves-effect waves-light modal-trigger"
+                href="#product-modal"
+                v-for="product in category.products"
+                @click="select(product,category)">
+                <div class="product-info">
+                    <div class="product-name">{{ product.name }}</div>
+                    <div class="product-price">{{ product.price }} €</div>
+                </div>
+                <div class="product-description" v-if="product.description">{{ product.description }}</div>
+            </li>
+        </ul>
+    </template>
+    {% endverbatim %}
+</div>

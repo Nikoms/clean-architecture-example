@@ -1,0 +1,75 @@
+{% extends 'base_resto.html.twig' %}
+
+{% block javascripts %}
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var elems = document.querySelectorAll('.modal');
+            M.Modal.init(elems, {});
+        });
+        var menu = {{ menu.json()|raw }};
+        var connected = '{{ app.user != null }}' !== '';
+        var addUrl = '{{ path('basket.add')|escape }}';
+    </script>
+    {% verbatim %}
+    <script>
+    var app = new Vue({
+    el: '#vue-app',
+    data: {
+        menu:menu,
+        selectedProduct:{},
+        selectedCategory:{},
+        quantity:1,
+        connected:connected,
+        addUrl:addUrl
+    },
+    methods: {
+        select(product, category){
+            if(connected){
+                this.selectedProduct = product;
+                this.selectedCategory = category;
+                this.quantity = 1;
+            }
+        },
+        removeQuantity(){
+            if(this.quantity>1){
+                this.quantity--;
+            }
+        },
+        addQuantity(){
+            this.quantity++;
+        }
+    }
+    });
+    </script>
+    {% endverbatim %}
+{% endblock %}
+{% block body %}
+
+    <div class="card">
+        <div class="card-content">{{ 'take-away'|content }}</div>
+    </div>
+    <div class="row">
+        <div class="col m{% if app.user %}9{% else %}12{% endif %} menu">
+            <div class="card">
+                <div class="card-content">{% include 'order/the-menu.html.twig' with {} only %}</div>
+            </div>
+
+        </div>
+        {% if app.user %}
+            <div class="col m3 hide-on-small-and-down">
+
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-title">Votre panier</span>
+                        {% if basket.products|length == 0 %}
+                            <p>Votre panier est vide</p>
+                        {% endif %}
+                        {% include 'order/summary.html.twig' with {basket:basket} only %}
+                        {% include 'order/go-to-confirm-basket.html.twig' with {orderType:orderType, basket:basket} only %}
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

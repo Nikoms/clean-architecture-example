@@ -1,0 +1,34 @@
+{% extends 'base_resto.html.twig' %}
+
+{% block body %}
+    <div class="row">
+        <div class="col m6 s12">
+            <div class="card">
+                <div class="card-content">
+                    {% include 'order/summary.html.twig' with { basket:basket } only %}
+                </div>
+            </div>
+        </div>
+        <div class="col m6 s12">
+            <div class="card">
+                <div class="card-content">
+                    <div class="panier-total">
+                        <div class="panier-total-price">
+                            <div class="panier-total-price-label">Paiement</div>
+                            <div>Via facture</div>
+                        </div>
+                        <div class="panier-total-price">
+                            <div class="panier-total-price-label">Type de commande</div>
+                            <div>{{ form.orderTypeName.vars.value|trans }}</div>
+                        </div>
+                        <div class="divider"></div>
+                    </div>
+
+                    {% if form.orderTypeName.vars.value %}
+                        {% include 'order/confirm-basket.html.twig' with { form:form, basket:basket } only %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="css/seat.css" media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="css/seat-base.css" media="screen,projection"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>{% block title %}S'eat restaurant{% endblock %}</title>
+    {% block stylesheets %}{% endblock %}
+    <link rel="icon" type="image/x-icon" href="/ico/favicon.ico"/>
+    <link rel="apple-touch-icon" sizes="57x57" href="/ico/apple-icon-57x57"/>
+    <link rel="apple-touch-icon" sizes="60x60" href="/ico/apple-icon-60x60"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="/ico/apple-icon-72x72"/>
+    <link rel="apple-touch-icon" sizes="76x76" href="/ico/apple-icon-76x76"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="/ico/apple-icon-114x114"/>
+    <link rel="apple-touch-icon" sizes="120x120" href="/ico/apple-icon-120x120"/>
+    <link rel="apple-touch-icon" sizes="144x144" href="/ico/apple-icon-144x144"/>
+    <link rel="apple-touch-icon" sizes="152x152" href="/ico/apple-icon-152x152"/>
+    <link rel="apple-touch-icon" sizes="180x180" href="/ico/apple-icon-180x180"/>
+    <link rel="icon" type="image/png" sizes="192x192" href="/ico/android-icon-192x192"/>
+    <link rel="icon" type="image/png" sizes="96x96" href="/ico/favicon-96x96"/>
+    <link rel="icon" type="image/png" sizes="16x16" href="/ico/favicon-16x16"/>
+</head>
+<body>
+<nav>
+    <div class="nav-wrapper seat-green">
+        <div class="container">
+            <a href="{{ path('home') }}" class="brand-logo" style="height: 100%">
+                <img src="/images/logo_small.png" alt="Logo S'eat restaurant" height="100%"/>
+            </a>
+            <a href="#" data-target="seat-nav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="{{ path('menu.show') }}">Take away</a></li>
+                <li><a href="{{ path('menu.salle') }}">Menu</a></li>
+                <li><a href="{{ path('business-lunch') }}">Business lunch</a></li>
+                <li><a href="{{ path('contact') }}">Contact</a></li>
+                <li style="width: 150px">
+                    <a class="dropdown-trigger" href="#!" data-target="user-menu">
+                        <i class="material-icons right">person</i>
+                    </a>
+                </li>
+            </ul>
+            <ul id="user-menu" class="dropdown-content">
+                {% if app.user %}
+                    <li><a href="{{ path('user.my-info') }}">{{ app.user.fullName() }}</a></li>
+                    <li><a href="{{ path('logout') }}">Se déconnecter</a></li>
+                {% else %}
+                    <li><a href="{{ path('login') }}">Login</a></li>
+                    <li><a href="{{ path('register') }}">S'enregistrer</a></li>
+                {% endif %}
+            </ul>
+            <ul class="sidenav" id="seat-nav">
+                <li><a href="{{ path('menu.show') }}">Take away</a></li>
+                <li><a href="{{ path('menu.salle') }}">Menu</a></li>
+                <li><a href="{{ path('business-lunch') }}">Business lunch</a></li>
+                <li><a href="{{ path('contact') }}">Contact</a></li>
+                <li>
+                    <div class="divider"></div>
+                </li>
+                {% if app.user %}
+                    <li><a href="{{ path('user.my-info') }}">{{ app.user.fullName() }}</a></li>
+                    <li><a href="{{ path('logout') }}">Se déconnecter</a></li>
+                {% else %}
+                    <li><a href="{{ path('login') }}">Login</a></li>
+                    <li><a href="{{ path('register') }}">S'enregistrer</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
+<ul id="user-menu" class="dropdown-content">
+    <li><a href="#!">one</a></li>
+    <li><a href="#!">two</a></li>
+    <li class="divider"></li>
+    <li><a href="#!">three</a></li>
+</ul>
+
+<div class="container seat-main-container">
+    {% for label, flashes in app.session.flashbag.all %}
+
+        {% for flash in flashes %}
+            {% if label == 'success' %}
+                <div class="card-panel green"><i class="material-icons inline-icon">check</i> {{ flash|trans }}</div>
+            {% elseif label == 'warning' %}
+                <div class="card-panel orange"><i class="material-icons inline-icon">warning</i> {{ flash|trans }}</div>
+            {% elseif label == 'error' %}
+                <div class="card-panel red"><i class="material-icons inline-icon">error</i> {{ flash|trans }}</div>
+            {% endif %}
+        {% endfor %}
+    {% endfor %}
+    {% block body %}{% endblock %}
+</div>
+{% if
+    showBasketMobileMenu is defined
+    and basket is defined
+    and orderType is defined
+    and orderType is not null
+    and basket is not null
+    and basket.products > 0
+    and orderType.error() == null %}
+    <div class="footer-to-order-on-mobile hide-on-med-and-up">
+        <a class="btn btn-full" href="{{ path('basket') }}">Commander ({{ basket.totalPrice }} €)</a>
+    </div>
+{% endif %}
+
+
+<script type="text/javascript" src="js/materialize.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        M.Sidenav.init(document.querySelectorAll('.sidenav'));
+        M.Dropdown.init(document.querySelectorAll('.dropdown-trigger'), {hover: false});
+    });
+</script>
+{% block javascripts %}{% endblock %}
+</body>
+</html>

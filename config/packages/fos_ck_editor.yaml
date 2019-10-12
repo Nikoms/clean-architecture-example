@@ -1,0 +1,19 @@
+fos_ck_editor:
+  default_config: my_custom_config
+  configs:
+    my_custom_config:
+      language:                   "fr"
+      toolbar:                    [ [ 'Bold','Italic','Underline','Strike','-','RemoveFormat'], [ 'NumberedList','BulletedList','-','Outdent','Indent','-','-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock' ], [ 'Link','Unlink'],[ 'Preview' ], [ 'Source' ], "/", [ 'Styles', 'Format','Font','FontSize' ], [ 'TextColor'] ]
+      stylesSet:
+        - { name: "Important", element: "span",  attributes: { class: "important" }}
+        - { name: "Ecriture rouge", element: "span",  attributes: { class: "red-text lighten-2" }}
+        - { name: "Encart rouge", element: "div",  attributes: { class: "card-panel red lighten-2"}}
+        - { name: "Encart vert", element: "div",  attributes: { class: "card-panel light-green"}}
+        - { name: "Encart vert 2", element: "div",  attributes: { class: "card-panel light-green lighten-2"}}
+        - { name: "Encart vert 3", element: "div",  attributes: { class: "card-panel light-green lighten-3"}}
+        - { name: "Encart vert 4", element: "div",  attributes: { class: "card-panel light-green darken-1"}}
+        - { name: "Encart vert 5", element: "div",  attributes: { class: "card-panel light-green darken-2"}}
+      # Chargement des styles personnalisables my_styles (voir plus bas)
+      uiColor:                    "#FCFCFC"           # Couleur de fond de l'interface
+      height:                     "600px"             # Hauteur par défaut
+      contentsCss:                ['/css/seat-base.css','/css/materialize.min.css'] # Charge les styles dans l'éditeur (permet de voir en temps réel le résultat)

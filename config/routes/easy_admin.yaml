@@ -1,0 +1,4 @@
+easy_admin_bundle:
+    resource: 'Symfony4\Controller\AdminController'
+    prefix: /work
+    type: annotation

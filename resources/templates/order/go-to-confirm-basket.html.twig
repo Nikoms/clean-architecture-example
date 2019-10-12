@@ -1,0 +1,9 @@
+{% if orderType != null %}
+    {% if orderType.error() == null %}
+        {% if basket.products|length > 0 %}
+            <a class="btn btn-full" href="{{ path('basket') }}">Commander</a>
+        {% endif %}
+    {% else %}
+        <div class="card-panel red lighten-3">{{ orderType.error().getMessage()|trans }}</div>
+    {% endif %}
+{% endif %}

@@ -1,0 +1,7 @@
+controllers:
+    resource: '../../src/Seat/Infrastructure/Symfony4/Controller/'
+    type: annotation
+    requirements:
+        _locale: '%app_locales%'
+    defaults:
+        _locale: '%locale%'

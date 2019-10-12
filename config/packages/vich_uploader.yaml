@@ -1,0 +1,6 @@
+vich_uploader:
+  db_driver: orm
+  mappings:
+    pdf:
+      uri_prefix:         '%app.path.download_pdf%'
+      upload_destination: '%kernel.project_dir%/public%app.path.download_pdf%'

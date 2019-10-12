@@ -1,0 +1,61 @@
+{
+  "name": "vagrant/seat",
+  "license": "proprietary",
+  "type": "project",
+  "autoload": {
+    "psr-4": {
+      "Symfony4\\": "src/Seat/Infrastructure/Symfony4/",
+      "Seat\\": "src/Seat/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "SeatTest\\": "tests/unit/Seat/"
+    }
+  },
+  "config": {
+    "platform": {
+      "php": "7.2.0"
+    }
+  },
+  "require": {
+    "php": ">=7.2.0",
+    "ext-json": "*",
+    "symfony/symfony": "^4.0",
+    "twig/twig": "^2.7",
+    "doctrine/doctrine-bundle": "^1.6",
+    "doctrine/orm": "^2.5",
+    "doctrine/doctrine-migrations-bundle": "^1.2",
+    "symfony/swiftmailer-bundle": "^3.2",
+    "symfony/monolog-bundle": "^3.3",
+    "twig/extensions": "^1.4",
+    "ramsey/uuid": "^3.8",
+    "beberlei/assert": "^3.2",
+    "symfony/flex": "^1.2",
+    "sensio/framework-extra-bundle": "^5.3",
+    "symfony/webpack-encore-bundle": "^1.5",
+    "easycorp/easyadmin-bundle": "^2.1",
+    "friendsofsymfony/ckeditor-bundle": "^2.0",
+    "vich/uploader-bundle": "^1.9",
+    "oro/doctrine-extensions": "^1.2",
+    "sentry/sentry-symfony": "^2.3",
+    "symfony/twig-bundle": "^4.2"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^7.5",
+    "symfony/phpunit-bridge": "*"
+  },
+  "scripts": {
+    "auto-scripts": {
+      "bin/console cache:clear": "script",
+      "bin/console ckeditor:install --clear=drop": "symfony-cmd",
+      "bin/console assets:install --symlink --relative %PUBLIC_DIR%": "script"
+    },
+    "post-install-cmd": [
+      "@auto-scripts"
+    ],
+    "post-update-cmd": [
+      "@auto-scripts"
+    ]
+  }
+}

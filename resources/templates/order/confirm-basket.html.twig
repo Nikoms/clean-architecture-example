@@ -1,0 +1,13 @@
+{#{% if orderType != null %}#}
+{#    {% if orderType.error() == null %}#}
+        {% if basket.count() > 0 %}
+
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <button type="submit" class="btn btn-full">Finaliser la commande</button>
+            {{ form_end(form) }}
+        {% endif %}
+{#    {% else %}#}
+{#        <div class="card-panel red lighten-3">{{ orderType.error().getMessage()|trans }}</div>#}
+{#    {% endif %}#}
+{#{% endif %}#}

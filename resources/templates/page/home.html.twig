@@ -1,0 +1,41 @@
+{% extends 'base_resto.html.twig' %}
+
+{% block body %}
+    <div class="card hide-on-small-only">
+        <div class="card-content">
+            <div class="slider">
+                <h1>{{ title }}</h1>
+                <label>
+                    <input type="text"/>
+                </label>
+                <button>{{ searchButtonLabel }}</button>
+                <ul class="products">
+                    {% for product in products %}
+                        <li>
+                            {% if product.isAvailable %}
+                                <a href="{{ path('profiler',{id:product.id }) }}">
+                                    {{ product.name }}
+                                </a>
+                            {% else %}
+                                <span>{{ product.name }}</span>
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-content">{{ 'presentation'|raw }}</div>
+    </div>
+{% endblock %}
+
+
+{% block javascripts %}
+    <script type="text/javascript">
+      document.addEventListener('DOMContentLoaded', function () {
+        M.Slider.init(document.querySelectorAll('.slider'), {});
+      });
+    </script>
+{% endblock %}

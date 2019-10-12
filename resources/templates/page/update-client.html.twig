@@ -1,0 +1,39 @@
+{% extends 'base_resto.html.twig' %}
+
+{% block body -%}
+    <div class="card">
+        <div class="card-content">
+            <div class="row">
+                {{ form_start(form, {'attr': {'class': 'col push-l2 l8 m12 s12','novalidate':'novalidate'} }) }}
+                <div class="row">
+                    <div class="input-field col s6">
+                        {% include 'form/field-new.html.twig' with {form:form, 'errors': errors|default([]),'fieldName': 'firstName'} only %}
+                    </div>
+                    <div class="input-field col s6">
+                        {% include 'form/field-new.html.twig' with {form:form, 'errors':errors|default([]),'fieldName': 'lastName'} only %}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        {% include 'form/field-new.html.twig' with {form:form, 'errors':errors|default([]),'fieldName': 'email'} only %}
+                    </div>
+                    <div class="input-field col s6">
+                        {% include 'form/field-new.html.twig' with {form:form, 'errors':errors|default([]),'fieldName': 'phoneNumber'} only %}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        {% include 'form/field-new.html.twig' with {form:form, 'errors':errors|default([]),'fieldName': 'password'} only %}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <button type="submit" class="btn btn-full">Mettre à jour</button>
+                    </div>
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

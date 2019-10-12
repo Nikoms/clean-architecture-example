@@ -1,0 +1,41 @@
+"delivery": Livraison
+"take-away": À emporter
+"error-notEmpty": Ce champs est obligatoire
+"error-string": Ce champs doit être composé de lettres
+"error-choice": Choix invalide
+"invalid-email": E-mail invalide
+"unknown-company": Cette société n'existe pas
+"disabled-company": La société a été désactivée
+"email-already-used": Cet e-mail est déjà utilisé
+"unknown-client": Le client n'existe pas
+"unknown-email": L'utilisateur n'existe pas
+"invalid-password": Mot de passe incorrect
+"disabled-user": L'utilisateur a été désactivé
+"unknown-supplement": Un des suppléments sélectionné n'existe plus
+"unknown-product": Ce produit n'existe plus
+"unknown-option": L'option sélectionnée n'existe plus
+"my-info-updated": Vos informations ont bien été mises à jour
+"new-password-login-needed": Vos informations ont bien été mises à jour. Veuillez vous reconnecter avec votre nouveau mot de passe
+"wrong-check-sum": Le panier a été modifé entre temps. Veuillez réessayer
+"empty-basket": Impossible de commander car votre panier est vide
+"Delivery not available": La livraison n'est pas disponible
+"Order too late": Il est trop tard pour faire une commande
+"Take away not available": L'option "à emporter" est indisponible
+"Take away too late": Il est trop tard pour commander "à emporter"
+
+"Company name": Société
+"First name": Prénom
+"Last name": Nom
+"Email": E-mail
+"Phone number": Téléphone
+"Password": Mot de passe
+"La hulpe": La hulpe
+"Waterloo": Waterloo
+"Store": Restaurant
+
+# Admin
+
+"Quantity": Quantité
+"Name": Nom
+"Comment": Commentaires
+"Order type string": "Type"

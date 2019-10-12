@@ -1,0 +1,87 @@
+{% extends 'base_resto.html.twig' %}
+
+{% block body %}
+    <div class="card">
+        <div class="card-content">
+            {{ 'register'|content }}
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-content">
+            <div class="row">
+                {{ form_start(form, {'attr': {'class': 'col push-l2 l8 m12 s12','novalidate':'novalidate'} }) }}
+                <div class="row">
+                    <div class="input-field col s12">
+                        {{ form_widget(form.companyName,{attr:{class:viewModel.errors.companyName is defined ? 'invalid':''}}) }}
+                        {{ form_label(form.companyName) }}
+                        {% if viewModel.errors.companyName is defined %}
+                            <span class="helper-text" data-error="{{ viewModel.errors.companyName|trans }}"></span>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        {{ form_widget(form.firstName,{attr:{class:viewModel.errors.firstName is defined ? 'invalid':''}}) }}
+                        {{ form_label(form.firstName) }}
+                        {% if viewModel.errors.firstName  is defined%}
+                            <span class="helper-text" data-error="{{ viewModel.errors.firstName|trans }}"></span>
+                        {% endif %}
+                    </div>
+                    <div class="input-field col s6">
+                        {{ form_widget(form.lastName,{attr:{class:viewModel.errors.lastName is defined ? 'invalid':''}}) }}
+                        {{ form_label(form.lastName) }}
+                        {% if viewModel.errors.lastName  is defined%}
+                            <span class="helper-text" data-error="{{ viewModel.errors.lastName|trans }}"></span>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        {{ form_widget(form.email,{attr:{class:viewModel.errors.email is defined? 'invalid':''}}) }}
+                        {{ form_label(form.email) }}
+                        {% if viewModel.errors.email is defined %}
+                            <span class="helper-text" data-error="{{ viewModel.errors.email|trans }}"></span>
+                        {% endif %}
+                    </div>
+                    <div class="input-field col s6">
+                        {{ form_widget(form.phoneNumber,{attr:{class:viewModel.errors.phoneNumber is defined ? 'invalid':''}}) }}
+                        {{ form_label(form.phoneNumber) }}
+                        {% if viewModel.errors.phoneNumber is defined %}
+                            <span class="helper-text" data-error="{{ viewModel.errors.phoneNumber|trans }}"></span>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        {{ form_widget(form.password,{attr:{class:viewModel.errors.password is defined ? 'invalid':''}}) }}
+                        {{ form_label(form.password) }}
+                        {% if viewModel.errors.password is defined %}
+                            <span class="helper-text" data-error="{{ viewModel.errors.password|trans }}"></span>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        {{ form_widget(form.store) }}
+                        {{ form_label(form.store) }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <button type="submit" class="btn btn-full">S'inscrire</button>
+                    </div>
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+{% block javascripts %}
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var selects = document.querySelectorAll('select');
+            M.FormSelect.init(selects, {});
+        });
+    </script>
+{% endblock %}

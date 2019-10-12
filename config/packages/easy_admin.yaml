@@ -1,0 +1,193 @@
+easy_admin:
+  user:
+    name_property_path: 'fullName'
+  site_name: "S'eat"
+  entities:
+    CommandLaHulpe:
+      label: 'Commandes La Hulpe'
+      role: 'ROLE_SANDWICH'
+      disabled_actions: ['new','edit','delete','search']
+      class: Symfony4\Doctrine\Command
+      templates:
+        list: 'admin/command/list.twig'
+      list:
+        title: "Les commandes du jour à La Hulpe"
+        dql_filter: 'SUBSTRING(CAST(entity.date as string),1,10) = SUBSTRING(CAST(CURRENT_DATE() as string),1,10)'
+        sort: ['date', 'ASC']
+        sortable: false
+        max_results: 9999999999
+        fields:
+          - { property: 'date', format: 'H\hi', sortable: false }
+          - orderTypeString
+          - quantity
+          - name
+          - option
+          - supplements
+          - comment
+          - { property: 'comment', type: 'id' }
+          - { property: 'id', fsortable: false }
+    CommandWaterloo:
+      label: 'Commandes Waterloo'
+      role: 'ROLE_SANDWICH'
+      disabled_actions: ['new','edit','delete','search']
+      class: Symfony4\Doctrine\Command
+      templates:
+        list: 'admin/command/list.twig'
+      list:
+        title: "Les commandes du jour à Waterloo"
+        dql_filter: 'SUBSTRING(CAST(entity.date as string),1,10) = SUBSTRING(CAST(CURRENT_DATE() as string),1,10)'
+        sort: ['date', 'ASC']
+        max_results: 9999999999
+        fields:
+          - { property: 'date', format: 'H\hi', sortable: false }
+          - orderTypeString
+          - quantity
+          - name
+          - option
+          - supplements
+          - { property: 'comment', type: 'id' }
+          - { property: 'id', fsortable: false }
+    Category:
+      role: 'ROLE_ADMIN'
+      class: Symfony4\Doctrine\Category
+      list:
+        fields:
+          - 'name'
+          - 'description'
+          - 'order'
+        sort: ['order', 'ASC']
+    Option:
+      role: 'ROLE_ADMIN'
+      class: Symfony4\Doctrine\CategoryOption
+      list:
+        fields:
+          - 'category'
+          - 'name'
+          - { property: 'price', format: '%01.2f €' }
+          - 'order'
+        sort: ['order', 'ASC']
+      form:
+        fields:
+          - 'category'
+          - 'name'
+          - { property: 'price', type: 'money', type_options: { currency: 'EUR' } }
+          - 'order'
+
+    Supplement:
+      role: 'ROLE_ADMIN'
+      class: Symfony4\Doctrine\CategorySupplement
+      list:
+        fields:
+          - 'category'
+          - 'name'
+          - { property: 'price', format: '%01.2f €' }
+          - 'order'
+        sort: ['order', 'ASC']
+      form:
+        fields:
+          - 'category'
+          - 'name'
+          - { property: 'price', type: 'money', type_options: { currency: 'EUR' } }
+          - 'order'
+    Company:
+      role: 'ROLE_ADMIN'
+      class: Symfony4\Doctrine\Company
+      list:
+        fields:
+          - 'id'
+          - 'name'
+          - 'isEnabled'
+          - 'canBeDelivered'
+          - 'orderDeliveryDeadLine'
+          - 'tournee'
+          - store
+      form:
+        fields:
+          - { type: 'section', label: 'Basic information' }
+          - isEnabled
+          - hasInvoice
+          - name
+          - slug
+          - vat
+          - comment
+          - { property: 'store', type: 'choice', type_options: { choices:{'La hulpe':'la-hulpe','Waterloo':'waterloo'} } }
+          - { type: 'section', label: 'Contact information' }
+          - streetNumber
+          - street
+          - zipCode
+          - city
+          - phoneNumber
+          - contactEmail
+          - { type: 'section', label: 'Delivery' }
+          - 'canBeDelivered'
+          - { property: 'adminCommandBefore', label: 'Commander avant', type: 'time', type_options: { minutes:['10','25','40','55'] } }
+          - tournee
+
+    Content:
+      role: 'ROLE_ADMIN'
+      class: Symfony4\Doctrine\HtmlContent
+      new:
+        fields:
+          - 'name'
+          - { property: 'html', type: 'fos_ckeditor' }
+      edit:
+        fields:
+          - { property: 'html', type: 'fos_ckeditor' }
+
+    Product:
+      role: 'ROLE_ADMIN'
+      class: Symfony4\Doctrine\Product
+      list:
+        fields:
+          - category
+          - name
+          - { property: 'price', format: '%01.2f €' }
+          - isEnabled
+          - order
+      form:
+        fields:
+          - category
+          - name
+          - description
+          - { property: 'price', type: 'money', type_options: { currency: 'EUR' } }
+          - isEnabled
+          - order
+        sort: ['category', 'ASC']
+    Tournee:
+      role: 'ROLE_ADMIN'
+      class: Symfony4\Doctrine\Tournee
+    Pdf:
+      role: 'ROLE_ADMIN'
+      class: Symfony4\Doctrine\Pdf
+      new:
+        fields:
+          - id
+          - text
+          - { property: 'pdfFile', type: 'file' }
+
+      edit:
+        fields:
+          - text
+          - { property: 'pdfFile', type: 'file' }
+    User:
+      role: 'ROLE_ADMIN'
+      class: Symfony4\Doctrine\User
+      list:
+        fields:
+          - firstName
+          - lastName
+          - company
+          - phoneNumber
+          - email
+          - store
+          - isEnabled
+      form:
+        fields:
+          - isEnabled
+          - firstName
+          - lastName
+          - company
+          - phoneNumber
+          - email
+          - { property: 'store', type: 'choice', type_options: { choices:{'La hulpe':'la-hulpe','Waterloo':'waterloo'} } }
+          - { property: 'role', type: 'choice', type_options: { choices:{'admin':'admin','sandwich':'sandwich','client':'client'} } }

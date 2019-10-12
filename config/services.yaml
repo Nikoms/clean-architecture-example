@@ -1,0 +1,56 @@
+# Learn more about services, parameters and containers at
+# http://symfony.com/doc/current/book/service_container.html
+parameters:
+  locale: fr
+  seat_email: commande@seat.be
+  app_locales: fr
+  app.path.download_pdf: /share/download/pdf
+
+services:
+  # default configuration for services in *this* file
+  _defaults:
+    # automatically injects dependencies in your services
+    autowire: true
+    # automatically registers your services as commands, event subscribers, etc.
+    autoconfigure: true
+    # this means you cannot fetch services directly from the container via $container->get()
+    # if you need to do this, you can override this setting on individual services
+    public: false
+
+  Symfony4\Doctrine\:
+    resource: '../src/Seat/Infrastructure/Symfony4/Doctrine/*'
+    tags: ['seat.autowire']
+
+  Symfony4\:
+    resource: '../src/Seat/Infrastructure/Symfony4/*'
+    exclude: '../src/Seat/Infrastructure/Symfony4/{Doctrine,Kernel.php}'
+
+  Symfony4\Twig\:
+    resource: '../src/Seat/Infrastructure/Symfony4/Twig'
+    tags: ['twig.extension']
+
+  Seat\Domain\:
+    resource: '../src/Seat/Domain/*'
+    exclude: '../src/Seat/Domain/{**/Entity,**/Error,**/Model}'
+
+  Seat\Presentation\:
+    resource: '../src/Seat/Presentation/*'
+    exclude: '../src/Seat/Presentation/{**/Entity,**/Error,**/Model}'
+
+  Seat\SharedKernel\:
+    resource: '../src/Seat/SharedKernel'
+
+  Seat\SharedKernel\Service\PasswordHasher:
+    alias: Seat\SharedKernel\Service\NativePasswordHasher
+
+  Symfony\Component\HttpFoundation\Session\Session:
+    alias: 'session'
+
+  Symfony4\Controller\:
+    resource: '../src/Seat/Infrastructure/Symfony4/Controller'
+    tags: ['controller.service_arguments']
+
+  Symfony4\DependencyInjection\Compiler\AdminFilterRolePass:
+    tags:
+      - name: "easyadmin.config_pass"
+        priority: 75 # before menu

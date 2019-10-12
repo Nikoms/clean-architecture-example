@@ -1,0 +1,50 @@
+<ul class="panier">
+    {% for product in basket.products %}
+        <li class="panier-item">
+            <div class="product-info">
+                <div class="product-name">{% if product.quantity > 1 %}{{ product.quantity }} x {% endif %}
+                    {{ product.name }}</div>
+                <div class="product-price">{{ product.totalPrice }} €</div>
+            </div>
+            <ul>
+                {% if product.option is not null %}
+                    <li>
+                    <i class="tiny material-icons inline-icon">chevron_right</i>
+                    {{ product.option }}
+                    </li>{% endif %}
+                {% for supplement in product.supplements %}
+                    <li><i class="tiny material-icons inline-icon">add_circle</i> {{ supplement }}
+                    </li>
+                {% endfor %}
+                {% if product.comment is not empty %}
+                    <li><i class="tiny material-icons inline-icon">comment</i> {{ product.comment }}
+                    </li>{% endif %}
+                <li>
+                    <form action="{{ path('basket.delete',{basketId:product.id}) }}" method="post">
+                        <a href="#!" class="submiter remove-from-basket">Supprimer</a>
+                    </form>
+                </li>
+            </ul>
+
+            <div class="divider"></div>
+        </li>
+    {% endfor %}
+</ul>
+{% if basket.products|length > 0 %}
+    <div class="panier-total">
+        <div class="panier-total-price">
+            <div class="panier-total-price-label">Total</div>
+            <div>{{ basket.totalPrice }} €</div>
+        </div>
+
+        <div class="divider"></div>
+    </div>
+{% endif %}
+<script>
+    var submiters = document.querySelectorAll('.submiter');
+    for (var i = 0; i < submiters.length; i++) {
+        submiters[i].addEventListener('click', function (a, b) {
+            a.target.parentNode.submit();
+        });
+    }
+</script>

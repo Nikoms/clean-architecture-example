@@ -1,0 +1,5 @@
+{{ form_widget(form[fieldName],{attr:{class:errors[fieldName] is defined ? 'invalid':''}}) }}
+{{ form_label(form[fieldName]) }}
+{% if errors[fieldName] is defined %}
+    <span class="helper-text" data-error="{{ errors[fieldName]|trans }}"></span>
+{% endif %}
